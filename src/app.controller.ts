@@ -15,6 +15,11 @@ export class AppController {
     return this.dbService.getAll();
   }
 
+  @Post()
+  create(@Body() dto: Partial<CardEntity>): CardEntity {
+    return this.dbService.create(dto);
+  }
+
   @Post('seed')
   seed(): CardEntity[] {
     this.dbService.seed(
