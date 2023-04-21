@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
 import { CardEntity } from './card.entity';
 import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
 import { readJsonSync } from 'fs-extra';
@@ -16,7 +16,7 @@ export class AppController {
   }
 
   @Post()
-  create(@Body() dto: Partial<CardEntity>): CardEntity {
+  create(@Body() dto: Omit<CardEntity, 'id'>): CardEntity {
     return this.dbService.create(dto);
   }
 
